@@ -5,10 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Medicine {
+public class Medicine extends Stock {
     Connection con;
 
     Medicine(PharmacyAPI pharma) {
+        super(pharma);
         con = pharma.con;
     }
 
@@ -30,6 +31,7 @@ public class Medicine {
     }
 
     public int delete(int medicineId) throws SQLException {
+        super.deleteM(medicineId);
         PreparedStatement ps = con.prepareStatement("DELETE FROM MEDICINE WHERE MEDICINE_ID=?");
         ps.setInt(1, medicineId);
         return ps.executeUpdate();

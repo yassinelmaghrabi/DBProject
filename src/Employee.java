@@ -3,6 +3,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Employee {
     Connection con;
@@ -16,10 +17,12 @@ public class Employee {
     }
     public void insert(int SSN, String Name, int salary, int branchid,String phonenumber) throws SQLException {
         PreparedStatement ps = con.prepareStatement("INSERT INTO employee VALUES(?,?,?,null,?)");
+        Date date = new Date();
         ps.setInt(1,SSN);
         ps.setString(2,Name);
         ps.setInt(3,salary);
         ps.setInt(4,branchid);
+        
 
         ps.executeUpdate();
         EPN.insert(SSN, phonenumber);

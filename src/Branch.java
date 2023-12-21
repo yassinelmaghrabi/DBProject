@@ -7,11 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class Branch {
+public class Branch extends Stock{
 
     Connection con;
 
     Branch(PharmacyAPI pharma) {
+        super(pharma);
         con = pharma.con;
     }
 
@@ -23,9 +24,10 @@ public class Branch {
         ps.executeUpdate();
     }
 
-    public int delete(int id) throws SQLException {
+    public int delete(int branchId) throws SQLException {
+        super.deleteB(branchId);
         PreparedStatement ps = con.prepareStatement("DELETE FROM branch WHERE Branch_id=?");
-        ps.setInt(1, id);
+        ps.setInt(1, branchId);
         return ps.executeUpdate();
     }
 
